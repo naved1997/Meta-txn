@@ -1,4 +1,3 @@
-import { parse } from 'querystring';
 const { DefenderRelayProvider, DefenderRelaySigner } = require("defender-relay-client/lib/ethers");
 const { Contract } = require("ethers");
 const { RelayClient } = require( 'defender-relay-client');
