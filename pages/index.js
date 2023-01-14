@@ -71,7 +71,7 @@ export default function Home() {
       alert(response.data.message);
       console.log('Msg',response.data.message);
       console.log('Tansaction Hash',response.data.tx.hash);
-      console.log('data',response.data);
+      console.log('data',response.data.tx);
 
     } catch (error) {
       console.log(error);
