@@ -69,9 +69,8 @@ export default function Home() {
       let amount=1000000000;
       let response = await axios.post('/api/distribute-reward',{ address: address, amount: amount})
       alert(response.data.message);
-      console.log('Msg',response.data.message);
       console.log('Tansaction Hash',response.data.tx.hash);
-      console.log('data',response.data.tx);
+      console.log(response.data.tx);
 
     } catch (error) {
       console.log(error);
