@@ -43,6 +43,7 @@ async function DistReward(address,amount) {
   // await tx.wait();
 
   console.log(tx);
+  //tx on server side terminal
   return tx;
 
 }
