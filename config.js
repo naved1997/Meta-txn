@@ -3,7 +3,7 @@
 export const ChainConfig = {
   bnb: {
     testnet: {
-      address: "0x70Dc4Edd41E5aF3E8636731032e7e382df259DE5".toLowerCase(),
+      address: "0x4E1308FEa19ADfD2B7131Af02ED7c7AA693F5Bca".toLowerCase(),
       ChainConfig: {
         chainId: "0x61",
         chainName: "BSC Testnet",
@@ -16,7 +16,6 @@ export const ChainConfig = {
         blockExplorerUrls: ["https://testnet.bscscan.com"],
       },
       Rewardabi: [
-        { inputs: [], stateMutability: "nonpayable", type: "constructor" },
         {
           anonymous: false,
           inputs: [
@@ -61,11 +60,50 @@ export const ChainConfig = {
             {
               indexed: false,
               internalType: "uint256",
-              name: "amounts_",
+              name: "amounts",
               type: "uint256",
             },
           ],
           name: "RewardDistributed",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "newAdmin",
+              type: "address",
+            },
+          ],
+          name: "SetAdmin",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "newRewardToken",
+              type: "address",
+            },
+          ],
+          name: "SetTokenAddress",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amounts",
+              type: "uint256",
+            },
+          ],
+          name: "TotalRewardDistributed",
           type: "event",
         },
         {
@@ -93,67 +131,12 @@ export const ChainConfig = {
             {
               indexed: false,
               internalType: "uint256",
-              name: "amount_",
+              name: "amounts",
               type: "uint256",
             },
           ],
           name: "WithdrawToken",
           type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "address",
-              name: "newAdmin",
-              type: "address",
-            },
-          ],
-          name: "setNewAdmin",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "address",
-              name: "rewardToken",
-              type: "address",
-            },
-          ],
-          name: "setTokenAddress",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "amounts_",
-              type: "uint256",
-            },
-          ],
-          name: "totalRewardDistributed",
-          type: "event",
-        },
-        {
-          inputs: [
-            { internalType: "address", name: "newadmin", type: "address" },
-          ],
-          name: "SetAdmin",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "TotalRewardDistributed",
-          outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-          stateMutability: "view",
-          type: "function",
         },
         {
           inputs: [],
@@ -164,8 +147,8 @@ export const ChainConfig = {
         },
         {
           inputs: [
-            { internalType: "address", name: "_to", type: "address" },
-            { internalType: "uint256", name: "_amount", type: "uint256" },
+            { internalType: "address", name: "recipient", type: "address" },
+            { internalType: "uint256", name: "amount", type: "uint256" },
           ],
           name: "distributeReward",
           outputs: [],
@@ -203,7 +186,9 @@ export const ChainConfig = {
         {
           inputs: [],
           name: "rewardToken",
-          outputs: [{ internalType: "address", name: "", type: "address" }],
+          outputs: [
+            { internalType: "contract IERC20", name: "", type: "address" },
+          ],
           stateMutability: "view",
           type: "function",
         },
@@ -215,21 +200,28 @@ export const ChainConfig = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "rewardsToken",
-          outputs: [
-            { internalType: "contract IERC20", name: "", type: "address" },
+          inputs: [
+            { internalType: "address", name: "newAdmin", type: "address" },
           ],
-          stateMutability: "view",
+          name: "setAdmin",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [
-            { internalType: "address", name: "_rewardToken", type: "address" },
+            { internalType: "address", name: "newToken", type: "address" },
           ],
-          name: "settokenAddress",
+          name: "setTokenAddress",
           outputs: [],
           stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalRewardDistributed",
+          outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+          stateMutability: "view",
           type: "function",
         },
         {
@@ -255,7 +247,7 @@ export const ChainConfig = {
           stateMutability: "nonpayable",
           type: "function",
         },
-      ]
+      ],
     },
   },
 };
